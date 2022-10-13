@@ -1,0 +1,20 @@
+import { IMovieRepository } from "../Repository/Movie/IMovieRepository"
+import { Movie } from "../Domain/Movie"
+
+export class MockMovieRepository implements IMovieRepository {
+
+    private movies: Movie[] = []
+
+    async save(movie: Movie): Promise<void> {
+        this.movies.push(movie)
+    }
+
+    async findAll(): Promise<Movie[]> {
+        return this.movies 
+    }
+    
+    async findByTitle(title: string): Promise<Movie | undefined> {
+        const movie = this.movies.find(movie => movie.getTitle() === title)
+        return movie
+    }
+}
