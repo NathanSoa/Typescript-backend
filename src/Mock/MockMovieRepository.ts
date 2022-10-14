@@ -1,7 +1,7 @@
 import { IMovieRepository } from "../Repository/Movie/IMovieRepository"
 import { Movie } from "../Domain/Movie"
 
-export class MockMovieRepository implements IMovieRepository {
+class MockMovieRepository implements IMovieRepository {
 
     private movies: Movie[] = []
 
@@ -18,3 +18,7 @@ export class MockMovieRepository implements IMovieRepository {
         return movie
     }
 }
+
+const mockMovieRepository: IMovieRepository = new MockMovieRepository()
+
+export { mockMovieRepository }

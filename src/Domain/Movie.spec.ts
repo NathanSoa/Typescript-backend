@@ -1,17 +1,10 @@
 import { Movie } from './Movie'
+import { createMockMovie } from '../Mock/MockMovie'
 
 describe('Movie Entity', () => {
    
     it('should generate an id when created if no id is provided', async () => {
-        const testMovie: Movie = new Movie({
-            title: 'Test Movie',
-            genres: [
-                'Action',
-                'Adventure'
-            ],
-            year: '2022',
-            synopsis: "lorem ipsum dolor amet"
-        })
+        const testMovie: Movie = createMockMovie()
     
         expect(testMovie.getId()).toBeTruthy()
     })

@@ -10,15 +10,24 @@ type movieProperties = {
 export class Movie {
 
     private id: string
-    private properties: movieProperties
+    private title: string
+    private genres: string[]
+    private year: string
+    private synopsis: string
 
     constructor(props: movieProperties, id?: string){
+        const { title, genres, year, synopsis } = props
+
         this.id = id || uuid()
-        this.properties = props
+        this.title = title
+        this.genres = genres
+        this.year = year
+        this.synopsis = synopsis
+        
     }
 
     getTitle(){
-        return this.properties.title
+        return this.title
     }
 
     getId(){
