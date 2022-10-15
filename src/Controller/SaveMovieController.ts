@@ -1,7 +1,6 @@
-import { Request, Response } from 'express'
-import { Movie } from '../Domain/Movie'
-import { mockMovieRepository } from '../Mock/MockMovieRepository'
-import { saveMovie } from '../useCases/Movie/saveMovie/saveMovie'
+import { Request, Response } from "express"
+import { Movie } from "../Domain/Movie"
+import { saveMovie } from "../useCases/Movie/saveMovie/saveMovie"
 
 export class SaveMovieController {
 
@@ -18,7 +17,7 @@ export class SaveMovieController {
             return response.status(400).json(JSON.stringify("Invalid object was provided!"))
         }
 
-        await saveMovie(new Movie(filtered), mockMovieRepository)
+        await saveMovie(new Movie(filtered))
         return response.status(201).json(JSON.stringify("Succesfuly saved!"))
     }
 }

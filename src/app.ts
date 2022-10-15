@@ -1,5 +1,5 @@
-import express from 'express'
-import { movieRouter } from './Routes/MovieRouter'
+import express from "express"
+import { movieRouter } from "./Routes/MovieRouter"
 
 const app = express()
 

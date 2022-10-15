@@ -10,11 +10,11 @@ const saveMovieController: SaveMovieController = new SaveMovieController()
 const findByTitleController: FindByTitleController = new FindByTitleController()
 
 movieRouter
-    .route('/movies')
+    .route("/movies")
     .get(findAllMoviesController.handle)
     .post(saveMovieController.handle)
 
-movieRouter.route('/movies/:movieTitle')
+movieRouter.route("/movies/:movieTitle")
     .get(findByTitleController.handle)
 
 export { movieRouter }

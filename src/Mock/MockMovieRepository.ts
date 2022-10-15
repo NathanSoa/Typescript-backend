@@ -1,4 +1,4 @@
-import { IMovieRepository } from "../Repository/Movie/IMovieRepository"
+import { IMovieRepository } from "../Database/Movie/IMovieRepository"
 import { Movie } from "../Domain/Movie"
 
 class MockMovieRepository implements IMovieRepository {

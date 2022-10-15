@@ -1,25 +1,27 @@
-import { Movie } from '../../../Domain/Movie'
-import { IMovieRepository } from '../../../Repository/Movie/IMovieRepository'
-import { mockMovieRepository } from '../../../Mock/MockMovieRepository'
-import { saveMovie } from './saveMovie'
-import { createMockMovie } from '../../../Mock/MockMovie'
+import { Movie } from "../../../Domain/Movie"
+import { prisma } from "../../../Database/prisma"
+import { saveMovie } from "./saveMovie"
+import { createMockMovie } from "../../../Mock/MockMovie"
+import { truncateAllTestData } from "../../../../prisma/prismaTestFunctions"
 
-describe('Add movie use case', () => {
+describe("Add movie use case", () => {
 
-   it('should save a new movie', async () => {
-    const testMovie: Movie = createMockMovie()
-
-      await saveMovie(testMovie, mockMovieRepository)
-
-      await expect(mockMovieRepository.findAll()).resolves.toHaveLength(1)
+   afterEach(async () => {
+      truncateAllTestData()
    })
 
-   it('should not save movies with duplicated title', async () => {
-    const testMovie: Movie = createMockMovie()
+   it("should save a new movie", async () => {
+      const testMovie: Movie = createMockMovie()
+      await saveMovie(testMovie)
 
-      await saveMovie(testMovie, mockMovieRepository)
-      await saveMovie(testMovie, mockMovieRepository)
+      await expect(prisma.movie.findUnique({where: { title: testMovie.getTitle()}})).resolves.toBeTruthy()
+   })
 
-      await expect(mockMovieRepository.findAll()).resolves.toHaveLength(1)
+   it("should not save movies with duplicated title", async () => {
+
+      const movie = createMockMovie()
+      await saveMovie(movie)
+
+      await expect(saveMovie(movie)).resolves.toBeFalsy()
    })
 })

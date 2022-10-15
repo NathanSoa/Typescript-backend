@@ -1,8 +1,12 @@
-import { IMovieRepository } from "../../../Repository/Movie/IMovieRepository";
-import { Movie } from "../../../Domain/Movie";
+import { Movie } from "@prisma/client"
+import {prisma} from "../../../Database/prisma"
 
-export async function findByTitle (title: string, movieRepository: IMovieRepository): Promise<Movie | null>{
-    const movie = (await movieRepository.findByTitle(title))
+export async function findByTitle (title: string): Promise<Movie | null>{
+    const movie = (await prisma.movie.findUnique({
+        where: {
+            title: title
+        }
+    }))
 
     if(!movie){
         return null

@@ -1,14 +1,18 @@
-import { Movie } from '../../../Domain/Movie'
-import { mockMovieRepository } from '../../../Mock/MockMovieRepository'
-import { findAll } from './findAll'
-import { createMockMovie } from '../../../Mock/MockMovie'
+import { findAll } from "./findAll"
+import { generateTestData, truncateAllTestData } from "../../../../prisma/prismaTestFunctions"
 
-describe('Find all use case', () => {
-   it('should return all movies', async () => {
-    const testMovie: Movie = createMockMovie()
-  
-        mockMovieRepository.save(testMovie)
-  
-        await expect(findAll(mockMovieRepository)).resolves.toHaveLength(1)
+describe("Find all use case", () => {
+
+   beforeAll(async () => {
+      await generateTestData()
+   })
+
+   afterEach(async () => {
+      await truncateAllTestData()
+   })
+
+   it("should return all movies", async () => {
+
+      await expect(findAll()).resolves.toHaveLength(2)
    })
 })

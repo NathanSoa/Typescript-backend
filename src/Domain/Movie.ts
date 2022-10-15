@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from "uuid"
 
 type movieProperties = {
     title: string,
@@ -32,5 +32,17 @@ export class Movie {
 
     getId(){
         return this.id
+    }
+    
+    getGenres(){
+        return this.genres
+    }
+
+    getYear(){
+        return this.year
+    }
+
+    getSynopsis(){
+        return this.synopsis
     }
 }

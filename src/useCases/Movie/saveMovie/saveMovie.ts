@@ -1,16 +1,40 @@
-import { Movie } from '../../../Domain/Movie'
-import { IMovieRepository } from "../../../Repository/Movie/IMovieRepository"
+import { Movie } from "../../../Domain/Movie"
+import { prisma } from "../../../Database/prisma"
 
-export async function saveMovie(movie: Movie, movieRepository: IMovieRepository): Promise<void> {
-     
-    if(await existsMovieWithSameTitle()){
+export async function saveMovie(movie: Movie): Promise<void> { 
+
+    const genres = movie.getGenres()
+
+    if((await prisma.movie.findUnique({where: {title: movie.getTitle()}})) !== null){
         return
-    }  
-    
-    movieRepository.save(movie)     
-
-
-    async function existsMovieWithSameTitle() {
-        return (await movieRepository.findAll()).filter(eachMovie => eachMovie.getTitle() === movie.getTitle()).length > 0
     }
+
+    await prisma.movie.create({
+        data: {
+            id: movie.getId(),
+            synopsis: movie.getSynopsis(),
+            title: movie.getTitle(),
+            year: movie.getYear()
+        }
+    })
+
+
+    genres.forEach(async eachGenre => {
+        await prisma.genre.upsert({
+            where: {
+                name: eachGenre
+            },
+            update:{},
+            create: {
+                name: eachGenre
+            }
+        })
+
+        await prisma.moviesGenres.create({
+            data: {
+                MovieID: movie.getId(),
+                GenreName: eachGenre
+            }
+        })
+    })    
 }
