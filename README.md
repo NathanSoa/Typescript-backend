@@ -6,5 +6,9 @@ I'm going to use these technologies:
 - Node
 - Express
 - TypeScript
-- Jest
 - Prisma
+
+And used these to test my application:
+
+- Jest
+- Supertest
