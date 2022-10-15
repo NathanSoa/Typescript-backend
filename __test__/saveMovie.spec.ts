@@ -1,8 +1,8 @@
-import { Movie } from "../../../Domain/Movie"
-import { prisma } from "../../../Database/prisma"
-import { saveMovie } from "./saveMovie"
-import { createMockMovie } from "../../../Mock/MockMovie"
-import { truncateAllTestData } from "../../../../prisma/prismaTestFunctions"
+import { Movie } from "../src/Domain/Movie"
+import { prisma } from "../src/Database/prisma"
+import { saveMovie } from "../src/useCases/Movie/saveMovie"
+import { createMockMovie } from "./Mock/MockMovie"
+import { truncateAllTestData } from "../prisma/prismaTestFunctions"
 
 describe("Add movie use case", () => {
 

@@ -1,5 +1,5 @@
-import { Movie } from "../../../Domain/Movie"
-import { prisma } from "../../../Database/prisma"
+import { Movie } from "../../Domain/Movie"
+import { prisma } from "../../Database/prisma"
 
 export async function saveMovie(movie: Movie): Promise<void> { 
 

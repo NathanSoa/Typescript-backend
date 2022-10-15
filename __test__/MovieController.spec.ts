@@ -1,8 +1,8 @@
 import supertest from "supertest"
-import { app } from "../app"
-import { Movie } from "../Domain/Movie"
-import { createMockMovie } from "../Mock/MockMovie"
-import { mockMovieRepository } from "../Mock/MockMovieRepository"
+import { app } from "../src/app"
+import { Movie } from "../src/Domain/Movie"
+import { createMockMovie } from "./Mock/MockMovie"
+import { mockMovieRepository } from "./Mock/MockMovieRepository"
 
 describe("Find all controller", () => {
    it("should return all movies", async () => {

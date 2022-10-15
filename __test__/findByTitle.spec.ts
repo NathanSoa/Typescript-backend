@@ -1,5 +1,5 @@
-import { findByTitle } from "./findByTitle"
-import { generateTestData, truncateAllTestData } from "../../../../prisma/prismaTestFunctions"
+import { findByTitle } from "../src/useCases/Movie/findByTitle"
+import { generateTestData, truncateAllTestData } from "../prisma/prismaTestFunctions"
 
 describe("Find by title use case", () => {
 

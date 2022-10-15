@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { Movie } from "../Domain/Movie"
-import { saveMovie } from "../useCases/Movie/saveMovie/saveMovie"
+import { saveMovie } from "../useCases/Movie/saveMovie"
 
 export class SaveMovieController {
 

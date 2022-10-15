@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { findAll } from "../useCases/Movie/findAll/findAll"
+import { findAll } from "../useCases/Movie/findAll"
 
 export class FindAllMoviesController {
 

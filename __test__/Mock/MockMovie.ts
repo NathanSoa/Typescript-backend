@@ -1,4 +1,4 @@
-import { Movie } from "../Domain/Movie"
+import { Movie } from "../../src/Domain/Movie"
 
 export function createMockMovie() {
     return new Movie({

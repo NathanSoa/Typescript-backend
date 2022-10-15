@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { findByTitle } from "../useCases/Movie/findByTitle/findByTitle"
+import { findByTitle } from "../useCases/Movie/findByTitle"
 
 export class FindByTitleController {
 

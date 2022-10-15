@@ -1,5 +1,5 @@
-import { Movie } from "./Movie"
-import { createMockMovie } from "../Mock/MockMovie"
+import { Movie } from "../src/Domain/Movie"
+import { createMockMovie } from "./Mock/MockMovie"
 
 describe("Movie Entity", () => {
    

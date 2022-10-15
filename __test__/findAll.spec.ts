@@ -1,5 +1,5 @@
-import { findAll } from "./findAll"
-import { generateTestData, truncateAllTestData } from "../../../../prisma/prismaTestFunctions"
+import { findAll } from "../src/useCases/Movie/findAll"
+import { generateTestData, truncateAllTestData } from "../prisma/prismaTestFunctions"
 
 describe("Find all use case", () => {
 

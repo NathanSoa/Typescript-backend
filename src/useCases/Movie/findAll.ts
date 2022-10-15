@@ -1,5 +1,5 @@
 import { Movie } from "@prisma/client"
-import {prisma} from "../../../Database/prisma"
+import {prisma} from "../../Database/prisma"
 
 export async function findAll(): Promise<Movie[]> {
     
