@@ -1,7 +1,7 @@
 import { Movie } from "@prisma/client"
 import { prisma } from "../../Database/prisma"
 
-export async function findAll(page:any = 0, size:any = 5): Promise<Movie[]> {
+export async function findAll(page: any = 0, size: any = 5): Promise<Movie[]> {
 
     const parsedPage: number = parseValue(page)
     const parsedSize: number = parseValue(size)
@@ -13,6 +13,9 @@ export async function findAll(page:any = 0, size:any = 5): Promise<Movie[]> {
     return (await prisma.movie.findMany({
         take: parsedSize,
         skip: parsedPage * parsedSize,
+        orderBy: {
+            year: "asc"
+        },
         include: {
             genres: {
                 select: {
