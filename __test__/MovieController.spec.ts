@@ -1,10 +1,11 @@
 import supertest from "supertest"
 import { app } from "../src/app"
 import { Movie } from "../src/Domain/Movie"
+import { saveMovie } from "../src/useCases/Movie/saveMovie"
 import { createMockMovie } from "./Mock/MockMovie"
-import { mockMovieRepository } from "./Mock/MockMovieRepository"
 
 describe("Find all controller", () => {
+   
    it("should return all movies", async () => {
         const response = await supertest(app)
                                 .get("/movies")
@@ -26,14 +27,14 @@ describe("Save movie controller", () => {
      expect(response.statusCode).toBe(201)
    })
 
-   it("should return 400 code if no movie was sent", async () => {
+   it("should return code 400 if no movie was sent", async () => {
       const response = await supertest(app)
                                  .post("/movies")
       
       expect(response.statusCode).toBe(400)
    })
 
-   it("should return 400 code if invalid object is sent", async () => {
+   it("should return code 400 if invalid object is sent", async () => {
    
       const response = await supertest(app)
                                  .post("/movies")
@@ -50,13 +51,23 @@ describe("Save movie controller", () => {
 describe("Find by title controller", () => {
    it("should return a movie if valid title is provided", async () => {
       const testMovie: Movie = createMockMovie()
-      mockMovieRepository.save(testMovie)
 
+      saveMovie(testMovie)
       const response = await supertest(app)
                               .get(`/movies/${testMovie.getTitle()}`)
 
       expect(response.statusCode).toBe(200)
       expect(response.body).toBeTruthy()
       expect(response.body).toHaveProperty("id")
+   })
+
+   it("should return code 400 if invalid title is provided", async () => {
+      const testMovie: Movie = createMockMovie()
+
+      saveMovie(testMovie)
+      const response = await supertest(app)
+                              .get(`/movies/InvalidNameHere`)
+
+      expect(response.statusCode).toBe(400)
    })
 })

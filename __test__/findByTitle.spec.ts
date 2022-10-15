@@ -1,15 +1,26 @@
 import { findByTitle } from "../src/useCases/Movie/findByTitle"
-import { generateTestData, truncateAllTestData } from "../prisma/prismaTestFunctions"
+import { prisma } from "../src/Database/prisma"
 
 describe("Find by title use case", () => {
 
     beforeEach(async () => {
-        await generateTestData()
+        await prisma.movie.create({
+            data: {
+               id: '1234',
+               title: 'Avatar',
+               synopsis: 'test movie',
+               year: '2009'
+            }
+         })
     })
 
     afterEach(async () => {
-        await truncateAllTestData()
+        await prisma.movie.deleteMany()
     })
+
+    afterAll(async () => {
+        await prisma.$disconnect()
+     })
 
     it("should return the correct movie if user inputs valid title", async () => {
         const movie = (await findByTitle("Avatar"))

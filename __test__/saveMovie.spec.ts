@@ -2,12 +2,19 @@ import { Movie } from "../src/Domain/Movie"
 import { prisma } from "../src/Database/prisma"
 import { saveMovie } from "../src/useCases/Movie/saveMovie"
 import { createMockMovie } from "./Mock/MockMovie"
-import { truncateAllTestData } from "../prisma/prismaTestFunctions"
 
 describe("Add movie use case", () => {
 
    afterEach(async () => {
-      truncateAllTestData()
+      const deleteMovieGenres = prisma.moviesGenres.deleteMany()
+      const deleteMovies = prisma.movie.deleteMany()
+      const deleteGenres = prisma.genre.deleteMany()
+
+      prisma.$transaction([deleteMovieGenres, deleteMovies, deleteGenres])
+   })
+
+   afterAll(async () => {
+      await prisma.$disconnect()
    })
 
    it("should save a new movie", async () => {
