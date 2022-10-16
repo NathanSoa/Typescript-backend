@@ -1,16 +1,13 @@
-import { Movie } from "@prisma/client"
+import { Movie } from "../../Domain/Movie"
 import { prisma } from "../../Database/prisma"
+import { MovieMapper } from "../../Utils/MovieMapper"
 
 export async function findAll(page: any = 0, size: any = 5): Promise<Movie[]> {
 
     const parsedPage: number = parseValue(page)
     const parsedSize: number = parseValue(size)
 
-    function parseValue(value: any): number{
-        return (isNaN(parseInt(value))) ? 0 : parseInt(value)
-    }
-
-    return (await prisma.movie.findMany({
+    const movies = await prisma.movie.findMany({
         take: parsedSize,
         skip: parsedPage * parsedSize,
         orderBy: {
@@ -23,5 +20,11 @@ export async function findAll(page: any = 0, size: any = 5): Promise<Movie[]> {
                 }
             }
         }
-    }))
+    })
+
+    return MovieMapper.parseDatabaseArray(movies)
+
+    function parseValue(value: any): number{
+        return (isNaN(parseInt(value))) ? 0 : parseInt(value)
+    }
 }
