@@ -26,12 +26,12 @@ describe("Find by title use case", () => {
         const movie = (await findByTitle("Avatar"))
 
         expect(movie).toBeTruthy()
-        expect(movie?.title).toBeTruthy()
-        expect(movie?.title).toBe("Avatar")
-        expect(movie?.synopsis).toBeTruthy()
-        expect(movie?.year).toBeTruthy()
-        expect(movie?.year).toBe("2009")
-        expect(movie?.id).toBeTruthy()
+        expect(movie?.getTitle()).toBeTruthy()
+        expect(movie?.getTitle()).toBe("Avatar")
+        expect(movie?.getSynopsis()).toBeTruthy()
+        expect(movie?.getYear()).toBeTruthy()
+        expect(movie?.getYear()).toBe("2009")
+        expect(movie?.getId()).toBeTruthy()
     })
 
     it("should return nulll if no movie was found", async () => {
