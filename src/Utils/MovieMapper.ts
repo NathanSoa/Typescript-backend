@@ -22,4 +22,8 @@ export class MovieMapper {
 
         return new Movie({title, year, synopsis, genres}, id)
     }
+
+    static parseDatabaseArray(movies: MovieDB[]): Movie[]{
+        return movies.map(eachMovie => MovieMapper.toDomain(eachMovie))
+    }
 }
