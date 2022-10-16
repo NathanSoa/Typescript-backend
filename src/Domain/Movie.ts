@@ -1,5 +1,8 @@
 import { v4 as uuid } from "uuid"
 
+/**
+ * Type that represent the object of properties that any movie must have
+ */
 type movieProperties = {
     title: string,
     genres: string[],
@@ -7,6 +10,12 @@ type movieProperties = {
     synopsis: string,
 }
 
+/**
+* Actual class that represent a movie in this application
+* @constructor
+* @param {movieProperties} props - Object that have all values of any movie 
+* @param {string} id - unique identifier, if there is no id on instatiation, it will generate one using uuid
+*/
 export class Movie {
 
     private id: string
