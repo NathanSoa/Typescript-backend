@@ -38,17 +38,6 @@ export class Password {
         return new Password({ password, hashed })
     }
 
-    public async compare(plainPassword: string): Promise<boolean> {
-
-        if (this.hashed) {
-            const hashedPassword = this.password
-
-            return await bcrypt.compare(plainPassword, hashedPassword)
-        }
-
-        return this.password === plainPassword
-    }
-
     /**
     * method that return the password hashed value if it is not hashed yet
     * @return {Promise<string>} - promise with password hashed value 
