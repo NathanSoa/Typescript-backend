@@ -5,7 +5,7 @@ export class FindAllMoviesController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const movies = await findAll(request.query.page, request.query.size)
+        const movies = await findAll({page: request.query.page, size: request.query.size})
         return response.status(200).json(movies)
     }
 }

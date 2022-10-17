@@ -2,13 +2,18 @@ import { Movie } from "../../Domain/Movie"
 import { prisma } from "../../Database/prisma"
 import { MovieMapper } from "../../Utils/MovieMapper"
 
+type paginationParams = {
+    page: any,
+    size: any
+}
+
 /**
 * Function that will return all movies retrived from database, by default, it will order data by year
 * @param {any} page - index of currently page that should be showed
 * @param {any} size - represent how many objects should be showed by page
 * @return {Promise<Movie[]>} - return a Promise object containing an array of all data
 */
-export async function findAll(page: any = 0, size: any = 5): Promise<Movie[]> {
+export async function findAll({page = 0, size = 5}: paginationParams): Promise<Movie[]> {
 
     const parsedPage: number = parseValue(page)
     const parsedSize: number = parseValue(size)
