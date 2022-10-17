@@ -37,3 +37,9 @@ model MoviesGenres {
   @@id([MovieID, GenreName])
   @@map("Movies_Genres")
 }
+
+model User {
+  id          String         @id
+  email       String         @unique
+  password    String         
+}
