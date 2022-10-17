@@ -1,6 +1,8 @@
 import { sign } from "jsonwebtoken"
 import { prisma } from "../../Database/prisma"
-import { Password } from "../../Domain/Password"
+import bcrypt from 'bcryptjs'
+import { UserMapper } from "../../Utils/UserMapper"
+import { secret } from "../../Config/secret"
 
 type userCredentials = {
     email: string,
@@ -9,13 +11,13 @@ type userCredentials = {
 
 export async function authenticate({email, password}: userCredentials): Promise<string | null> {
 
-    const passwordObject = Password.create({password: password})
-    const user = await prisma.user.findUniqueOrThrow({where: { email: email }})
-
-    const passwordMatches = await passwordObject.compare(user.password)
+    const userDB = await prisma.user.findUniqueOrThrow({where: { email: email }})
+    
+    const user = UserMapper.toDomain(userDB)
+    const passwordMatches = await bcrypt.compare(password, userDB.password)
 
     if(passwordMatches){
-        return sign({id: user.id, email: user.email}, "QRNsyqvEm01Ir7qh4psea8UNqApsJD")
+        return sign({id: user.getID(), email: user.getEmail()}, secret, { expiresIn: "1h" })
     }
 
     return null
