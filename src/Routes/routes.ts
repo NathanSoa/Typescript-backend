@@ -4,7 +4,7 @@ import { Router } from "express"
 
 const router = Router()
 
-router.use(movieRouter)
 router.use(userRouter)
+router.use(movieRouter)
 
 export { router }
