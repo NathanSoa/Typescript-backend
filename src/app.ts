@@ -1,9 +1,9 @@
 import express from "express"
-import { movieRouter } from "./Routes/MovieRouter"
+import { router } from "./Routes/routes"
 
 const app = express()
 
 app.use(express.json())
-app.use(movieRouter)
+app.use(router)
 
 export { app }
