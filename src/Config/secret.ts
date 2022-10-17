@@ -1,0 +1,1 @@
+export const secret = "QRNsyqvEm01Ir7qh4psea8UNqApsJD"
