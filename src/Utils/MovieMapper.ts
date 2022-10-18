@@ -18,7 +18,7 @@ export class MovieMapper {
     /**
     * Main method of MovieMapper class. This should be used to convert a unique object coming from database
     * @param {MovieDB} rawData - object that have all data retrieved from database
-    * @return {Movie} - returns a new domain Movie instantiation containing all data passed
+    * @return {Movie} - returns a new domain Movie instace containing all data
     */
     static toDomain(rawData: MovieDB){
         const id = rawData.id
