@@ -41,5 +41,7 @@ model MoviesGenres {
 model User {
   id          String         @id
   email       String         @unique
-  password    String         
+  password    String  
+
+  @@map("users")       
 }
