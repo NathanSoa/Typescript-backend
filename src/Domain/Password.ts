@@ -26,7 +26,7 @@ export class Password {
 
     /**
     * method that return a new instance of password if it has valid length,
-    * if invalid length password is sent, it will throw an error.
+    * if invalid length password is sent, it will throw an InvalidLengthError.
     * @constructor
     * @param {passwordProperties} props - object that have all values for a password
     */
