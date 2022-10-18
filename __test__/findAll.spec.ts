@@ -30,6 +30,6 @@ describe("Find all use case", () => {
    
    it("should return all movies", async () => {
 
-      await expect(findAll()).resolves.toHaveLength(2)
+      await expect(findAll({page: 0, size: 5})).resolves.toHaveLength(2)
    })
 })

@@ -7,7 +7,7 @@ describe('Authenticate function', () => {
 
    beforeAll(async () => {
       const password = Password.create({password: "myPassword"})
-      const user = new User({email: "nathan@gmail.com", name: "nathan", password: password})
+      const user = new User({email: "nathan@gmail.com", password: password})
       const hashedPassword = await user.getPassword().getHashed()
 
         await prisma.user.create({
