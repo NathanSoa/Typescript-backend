@@ -7,7 +7,9 @@ export class FindByTitleController {
         const movie = await findByTitle(request.params.movieTitle || "")
 
         if(!movie){
-            return response.status(400).json(JSON.stringify(`Cannot found movie with title ${request.params.title}`))
+            return response.status(400).json({
+                reason: `Cannot found movie with title ${request.params.title}`
+            })
         }
         
         return response.status(200).json(movie)
