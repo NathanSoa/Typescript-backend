@@ -1,3 +1,6 @@
+/** 
+ * Error that is thrown when user tries to authenticate with an inexistent email
+*/
 export class UserNotFoundError extends Error {
 
     constructor(email: string){
