@@ -1,4 +1,3 @@
-
 export class InvalidLengthPasswordError extends Error {
     
     constructor(message: string){
